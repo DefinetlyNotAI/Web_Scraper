@@ -104,45 +104,56 @@ def main():
         filename = download_with_resources(args.url)
         images = download_images(args.url, args.url)
 
+        # Create a folder to store all files
+        folder_path = f"{website_name}_{args.full and 'full' or 'basic'}_files"
+        os.makedirs(folder_path, exist_ok=True)
+
+        # Save the HTML file
+        if filename:
+            shutil.copy(filename, folder_path)
+
+        # Download and save images
         if images:
-            images_folder = f"{website_name}_images"
-            os.makedirs(images_folder, exist_ok=True)
             for image in images:
-                image_path = os.path.join(images_folder, os.path.basename(image))
+                image_path = os.path.join(folder_path, os.path.basename(image))
+                img_response = requests.get(image, stream=True)
                 with open(image_path, 'wb') as img_file:
-                    img_response = requests.get(image, stream=True)
                     for chunk in tqdm(img_response.iter_content(chunk_size=8192),
                                       desc=f"Downloading Image {os.path.basename(image)}"):
                         if chunk:
                             img_file.write(chunk)
     else:
         filename = download_basic_html(args.url)
+        folder_path = f"{website_name}_basic_files"
+        os.makedirs(folder_path, exist_ok=True)
+        shutil.copy(filename, folder_path)
 
-    # Create a temporary folder to store all files
-    temp_folder = f"{website_name}_temp"
-    os.makedirs(temp_folder, exist_ok=True)
-
-    # Move the downloaded files to the temporary folder
-    if filename:
-        shutil.move(filename, temp_folder)
-    if args.full and images:
-        for image in images:
-            image_path = os.path.join(temp_folder, os.path.basename(image))
-            shutil.move(image, image_path)
-
-    # Zip the contents of the temporary folder
+    # Zip the contents of the folder
     if args.zip:
         zip_filename = f"{website_name}.zip"
-        zip_files(zip_filename, [os.path.join(temp_folder, f) for f in os.listdir(temp_folder)], delete_after=True)
+        with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files in os.walk(folder_path):
+                for file in files:
+                    zipf.write(os.path.join(root, file),
+                               os.path.relpath(os.path.join(root, file),
+                                               os.path.join(folder_path, '..')))
         print(f"Files zipped into {zip_filename}")
-    else:
-        print(f"All files moved to {temp_folder}")
 
-    # Delete the temporary folder after zipping (or at least leave only the zipped file)
-    if args.zip:
-        os.rmdir(temp_folder)
+        # Optionally, delete the folder after zipping
+        shutil.rmtree(folder_path)
+        print(f"Folder {folder_path} deleted.")
     else:
-        print(f"Temporary folder left intact: {temp_folder}")
+        print(f"All files saved in {folder_path}")
+
+    try:
+        os.remove(website_name + "_basic.html")
+        print(f"File {website_name + '_basic.html'} deleted.")
+    except:
+        try:
+            os.remove(website_name + "_advanced.html")
+            print(f"File {website_name + '_basic_files.html'} deleted.")
+        except Exception as e:
+            print("Error deleting files:", e)
 
 
 if __name__ == "__main__":
