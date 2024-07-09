@@ -9,6 +9,15 @@ from tqdm import tqdm
 
 
 def download_basic_html(url):
+    """
+    Downloads the basic HTML content from a given URL and saves it to a file.
+
+    Parameters:
+        url (str): The URL of the HTML content to be downloaded.
+
+    Returns:
+        str or None: The filename of the downloaded HTML file, or None if the download failed.
+    """
     response = requests.get(url, stream=True)  # Enable streaming for progress bar
     if response.status_code != 200:
         print(f"Failed to load {url}")
@@ -25,6 +34,15 @@ def download_basic_html(url):
 
 
 def download_with_resources(url):
+    """
+    Downloads the HTML content and associated resources from a given URL, saves them to a file, and returns the filename.
+
+    Parameters:
+        url (str): The URL from which to download the HTML content and resources.
+
+    Returns:
+        str or None: The filename of the downloaded HTML file with associated resources, or None if the download failed.
+    """
     response = requests.get(url, stream=True)  # Enable streaming for progress bar
     if response.status_code != 200:
         print(f"Failed to load {url}")
@@ -47,6 +65,16 @@ def download_with_resources(url):
 
 
 def download_images(base_url, url):
+    """
+    Downloads images from a given URL after processing them to get the absolute image URLs.
+
+    Parameters:
+        base_url (str): The base URL to be concatenated with relative image URLs.
+        url (str): The URL from which to download the HTML content containing images.
+
+    Returns:
+        list: A list of absolute image URLs after concatenation with the base URL.
+    """
     response = requests.get(url, stream=True)  # Enable streaming for progress bar
     if response.status_code != 200:
         print(f"Failed to load {url}")
@@ -68,6 +96,14 @@ def download_images(base_url, url):
 
 
 def zip_files(zip_filename, files, delete_after=False):
+    """
+    Zips the files given in the 'files' list into a zip file named 'zip_filename'.
+
+    Parameters:
+        zip_filename (str): The name of the zip file to create.
+        files (list): A list of file paths to be included in the zip.
+        delete_after (bool, optional): Whether to delete the files after zipping. Defaults to False.
+    """
     with zipfile.ZipFile(zip_filename, 'w') as zipf:
         for file in files:
             if os.path.exists(file):
@@ -81,7 +117,16 @@ def zip_files(zip_filename, files, delete_after=False):
             print(f"Deleted {file}")
 
 
-def main():
+def parse():
+    """
+    Main function that serves as the entry point for the web scraping application.
+
+    This function parses command line arguments to scrape a given URL, download content based on the arguments provided, and optionally zip the downloaded files.
+    It prompts the user for confirmation before proceeding with the download.
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(description='Web Scraper')
     parser.add_argument('--name', default=None, help='Name of the website (optional)')
     parser.add_argument('--zip', action='store_true', help='Zip the downloaded files (default: False)')
@@ -157,4 +202,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parse()
