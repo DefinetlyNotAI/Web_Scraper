@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 import requests
 from bs4 import BeautifulSoup
 import zipfile
@@ -57,8 +58,8 @@ def download_images(base_url, url):
     for tag in image_tags:
         img_url = tag.get('src')
         if img_url and ('http' not in img_url and 'https' not in img_url):
-            # Convert relative URL to absolute
-            img_url = urlparse(base_url).scheme + '://' + urlparse(base_url).hostname + img_url
+            # Correctly concatenate the base URL and the relative URL
+            img_url = f"{base_url}/{img_url}"
         images.append(img_url)
 
     print(f"Found images: {images}")  # In a real scenario, you'd download these images
@@ -117,14 +118,31 @@ def main():
     else:
         filename = download_basic_html(args.url)
 
-    if args.zip and filename:
+    # Create a temporary folder to store all files
+    temp_folder = f"{website_name}_temp"
+    os.makedirs(temp_folder, exist_ok=True)
+
+    # Move the downloaded files to the temporary folder
+    if filename:
+        shutil.move(filename, temp_folder)
+    if args.full and images:
+        for image in images:
+            image_path = os.path.join(temp_folder, os.path.basename(image))
+            shutil.move(image, image_path)
+
+    # Zip the contents of the temporary folder
+    if args.zip:
         zip_filename = f"{website_name}.zip"
-        zip_files(zip_filename, [filename], delete_after=True)
+        zip_files(zip_filename, [os.path.join(temp_folder, f) for f in os.listdir(temp_folder)], delete_after=True)
         print(f"Files zipped into {zip_filename}")
-    elif args.full:
-        zip_filename = f"{website_name}_files.zip"
-        zip_files(zip_filename, [filename] + images, delete_after=True)
-        print(f"Files zipped into {zip_filename}")
+    else:
+        print(f"All files moved to {temp_folder}")
+
+    # Delete the temporary folder after zipping (or at least leave only the zipped file)
+    if args.zip:
+        os.rmdir(temp_folder)
+    else:
+        print(f"Temporary folder left intact: {temp_folder}")
 
 
 if __name__ == "__main__":
