@@ -1,0 +1,5 @@
+tqdm download progress bar
+
+if not zipped, place it in a folder of that name, dont change the html name
+
+src error : python scrape.py --url "https://www.wikipedia.org" --full -y --zip
