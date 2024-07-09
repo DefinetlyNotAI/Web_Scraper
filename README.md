@@ -1,20 +1,20 @@
-# YOUR_PROJECT_NAME 📎
+# Web_Scraper 📎
 
-Welcome to YOUR_PROJECT_NAME 🌐,
+Welcome to Web_Scraper 🌐,
 a cutting-edge tool
-designed to CHANGE_ME.
+designed to scrape webpages in a very neat fashion.
 Crafted with python,
-it's an actively developed project that is
-aimed at CHANGE_ME.
-This comprehensive guide is here to equip you with everything you need to use CHANGE_ME effectively.
+
+This comprehensive guide is here to equip you with everything you need
+to use Web_Scraper effectively.
 
 <div align="center">
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME/issues"><img src="https://img.shields.io/github/issues/DefinetlyNotAI/YOUR_REPO_NAME" alt="GitHub Issues"></a>
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME/tags"><img src="https://img.shields.io/github/v/tag/DefinetlyNotAI/YOUR_REPO_NAME" alt="GitHub Tag"></a>
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME/graphs/commit-activity"><img src="https://img.shields.io/github/commit-activity/t/DefinetlyNotAI/YOUR_REPO_NAME" alt="GitHub Commit Activity"></a>
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME/languages"><img src="https://img.shields.io/github/languages/count/DefinetlyNotAI/YOUR_REPO_NAME" alt="GitHub Language Count"></a>
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME/actions"><img src="https://img.shields.io/github/check-runs/DefinetlyNotAI/YOUR_REPO_NAME/main" alt="GitHub Branch Check Runs"></a>
-    <a href="https://github.com/DefinetlyNotAI/YOUR_REPO_NAME"><img src="https://img.shields.io/github/repo-size/DefinetlyNotAI/YOUR_REPO_NAME" alt="GitHub Repo Size"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper/issues"><img src="https://img.shields.io/github/issues/DefinetlyNotAI/Web_Scraper" alt="GitHub Issues"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper/tags"><img src="https://img.shields.io/github/v/tag/DefinetlyNotAI/Web_Scraper" alt="GitHub Tag"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper/graphs/commit-activity"><img src="https://img.shields.io/github/commit-activity/t/DefinetlyNotAI/Web_Scraper" alt="GitHub Commit Activity"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper/languages"><img src="https://img.shields.io/github/languages/count/DefinetlyNotAI/Web_Scraper" alt="GitHub Language Count"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper/actions"><img src="https://img.shields.io/github/check-runs/DefinetlyNotAI/Web_Scraper/main" alt="GitHub Branch Check Runs"></a>
+    <a href="https://github.com/DefinetlyNotAI/Web_Scraper"><img src="https://img.shields.io/github/repo-size/DefinetlyNotAI/Web_Scraper" alt="GitHub Repo Size"></a>
 </div>
 
 ## 🛠️ Installation and Setup 🛠️
@@ -23,26 +23,24 @@ This comprehensive guide is here to equip you with everything you need to use CH
 
 Ensure your system meets these requirements:
 
-- CHANGE_ME.
-- CHANGE_ME.
-- CHANGE_ME.
-- CHANGE_ME.
+- Has Python 3.8 or higher.
+- Downloaded all required dependencies.
 
 ### Step-by-Step Installation
 
-1. **Clone the Repository**: Use Git to clone YOUR_PROJECT_NAME to your local machine. Open Command Prompt as an administrator and run:
+1. **Clone the Repository**: Use Git to clone Web_Scraper to your local machine. Open Command Prompt as an administrator and run:
 
    ```powershell
-   git clone https://github.com/DefinetlyNotAI/YOUR_REPO_NAME.git
+   git clone https://github.com/DefinetlyNotAI/Web_Scraper.git
    ```
 
 2. **Navigate to the Project Directory**: Change your current directory to the cloned CHANGE_ME folder:
 
    ```powershell
-   cd CHANGE_ME
+   cd Web_Scraper
    ```
 
-3. **Run CHANGE_ME**: Run `./CHANGE_ME` more info below.
+3. **Run CHANGE_ME**: Run `./scrape` more info below.
 
 
 ### Basic Usage
