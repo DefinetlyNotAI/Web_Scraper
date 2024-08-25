@@ -60,7 +60,7 @@ Ensure your system meets these requirements:
 The utility is executed from the command line. Here's a basic example of how to use it:
 
 ```bash
-python web_scraper.py --url "https://example.com" --name "ExampleSite" --zip --full -y
+python web_scraper.py --URL "https://example.com" --name "ExampleSite" --zip --full -y
 ```
 
 ### Options

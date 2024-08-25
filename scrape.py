@@ -131,7 +131,7 @@ def parse():
     parser.add_argument('--name', default=None, help='Name of the website (optional)')
     parser.add_argument('--zip', action='store_true', help='Zip the downloaded files (default: False)')
     parser.add_argument('--full', action='store_true', help='Download full data or just basic UI (default: False)')
-    parser.add_argument('--url', required=True, help='URL to scrape')
+    parser.add_argument('--URL', required=True, help='URL to scrape')
     parser.add_argument('-y', action='store_true', help='Automatically download without asking')
 
     args = parser.parse_args()
