@@ -60,8 +60,10 @@ Ensure your system meets these requirements:
 The utility is executed from the command line. Here's a basic example of how to use it:
 
 ```bash
-python web_scraper.py --URL "https://example.com" --name "ExampleSite" --zip --full -y
+python scrape.py --URL "https://example.com" --name "ExampleSite" --zip --full -y
 ```
+
+You may use `secrets.scrape.py` for beta testing functionality.
 
 ### Options
 
